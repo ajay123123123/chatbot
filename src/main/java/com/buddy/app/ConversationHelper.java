@@ -9,9 +9,9 @@ import com.ibm.watson.developer_cloud.conversation.v1.model.MessageRequest;
 
 
 public class ConversationHelper {
-	static String workspaceId = "62d6f4da-bc61-4296-bb83-2ef29b3ce439"; // replace with your own
-	static String userId = "86da0957-6abd-41e6-9b7a-186f4d03a977";// replace with your own
-	static String password = "025EqR862y68";// replace with your own
+	static String workspaceId = "9660dfe0-b5f7-441b-9940-38a2e3b812b7"; // replace with your own
+	static String userId = "3f8ec9ad-d89e-4ca8-ae1f-c4f1b180b836";// replace with your own
+	static String password = "DNrhFE1janx4";// replace with your own
 	
 	static private String validUIDs = "john,bob,bill";
 	static private String userQAArr[][]={

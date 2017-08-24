@@ -1,0 +1,619 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+html, body {
+	height: 100%;
+}
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 1.3;
+	overflow: hidden;
+}
+.chatApp {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	width: 680px;
+	height: 80vh;
+	max-height: 510px;
+	z-index: 2;
+	overflow: hidden;
+	box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+	background: rgba(255,255,255,1);
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+	background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+	background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+	border-radius: 10px;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+
+.chatAppParent {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	width: 1000px;
+	height: 80vh;
+	max-height: 600px;
+	z-index: 1;
+	overflow: hidden;
+	box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+	background: rgba(255,255,255,1);
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+	background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+	background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+	border-radius: 10px;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+.chatApp .title {
+	height: 40px;
+	/*background: #366886;*/
+	background: #cc0066;
+	width: 100%;
+	padding: 0 10px;
+	line-height: 14px;
+}
+.chatApp .title h1 {
+	font-size: 18px;
+	color: #fff;
+	font-weight: 800;
+	width: 40%;
+	display: inline-block;
+}
+.chatApp .title h1 span {
+	font-weight: 100
+}
+.chatApp .title .controls {
+	float: right;
+	display: inline-block;
+	text-align: right;
+	height: 33px;
+	margin-top: 7px;
+}
+.chatApp .title .controls div, .chatApp .title .controls a {
+	text-decoration: none;
+}
+.chatApp .title .controls .close {
+	height: 24px;
+	width: 24px;
+	background: url(sprite.png) 0 0;
+	display: inline-block;
+	margin-right: 5px;
+	cursor: pointer;
+}
+.chatApp .title .controls .volume {
+	height: 24px;
+	width: 24px;
+	background: url(sprite.png) 0 -25px;
+	display: inline-block;
+	margin-right: 5px;
+	cursor: pointer;
+}
+.chatApp .title .controls .volumeOff {
+	height: 24px;
+	width: 24px;
+	background: url(sprite.png) 0 -49px;
+	display: inline-block;
+	margin-right: 5px;
+	cursor: pointer;
+}
+.chatApp .messages {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1 1 auto;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	color: rgba(0, 0, 0, 0.7);
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	/*height: 350px;*/
+}
+.chatApp .messages .messagesContent {
+	/*height: 101%;*/
+	width: 100%;
+}
+.chatApp .messages .messagesContent .message.new .avatar {
+	height: 34px;
+	width: 34px;
+	background: #fff;
+	border-radius: 50%;
+	margin: 0;
+	float: left;
+	padding-bottom: 0;
+	overflow: hidden;
+}
+.chatApp .messages .messagesContent .message.right .avatar {
+	float: right
+}
+.chatApp .messages .message.new {
+	width: 510px;
+}
+.chatApp .messages .message.right {
+	float: right;
+}
+.chatApp .messages .message.new div {
+	float: left;
+	margin-left: 10px;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 10px;
+	font-size: 12px;
+	line-height: 18px;
+}
+.chatApp .messages .message.new div.replies {
+	background: rgba(16, 210, 68, 0.1);
+	padding: 5px 10px;
+	border-radius: 5px;
+	min-width: 410px;
+	max-width: 465px;
+}
+.chatApp .messages .message.right div.replies {
+	float: right;
+	margin-right: 10px;
+	min-height: 35px;
+	background: rgba(8, 196, 255, 0.08);
+}
+.chatApp .messages .message.right div {
+	text-align: right;
+	margin-right: 10px;
+	margin: 0;
+}
+.chatApp .messages .message {
+	clear: both;
+	float: left;
+	font-size: 11px;
+	line-height: 1.4;
+	position: relative;
+	margin: 10px 0;
+}
+.messageBox {
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 1 40px;
+	-ms-flex: 0 1 40px;
+	flex: 0 1 40px;
+	width: 100%;
+	background: #cc0066;
+	padding: 10px;
+	position: relative;
+}
+.messageBox .messageInput {
+	background: none;
+	border: none;
+	outline: none !important;
+	resize: none;
+	color: rgba(255, 255, 255, 0.9);
+	font-size: 12px;
+	height: 17px;
+	margin: 0;
+	padding-right: 20px;
+	width: 81%;
+	overflow: hidden;
+	vertical-align: top;
+}
+.messageBox textarea:focus:-webkit-placeholder {
+ color: transparent;
+}
+.messageBox .messageSubmit {
+	position: absolute;
+	z-index: 2;
+	top: 9px;
+	right: 10px;
+	color: #fff;
+	border: none;
+	background: #0c96d4;
+	font-size: 12px;
+	line-height: 1;
+	padding: 6px 20px;
+	border-radius: 30px;
+	outline: none !important;
+	-webkit-transition: background .2s ease;
+	transition: background .2s ease;
+	cursor: pointer;
+}
+.messageBox .messageSubmit:hover {
+	background: #087eb3;
+}
+
+.messageSubmit1 {
+	position: absolute;
+	z-index: 1;
+	top: 9px;
+	right: 10px;
+	color: #fff;
+	border: none;
+	background: #0c96d4;
+	font-size: 12px;
+	line-height: 1;
+	padding: 6px 20px;
+	border-radius: 30px;
+	outline: none !important;
+	-webkit-transition: background .2s ease;
+	transition: background .2s ease;
+	cursor: pointer;
+}
+.messageSubmit1:hover {
+	background: #087eb3;
+}
+
+.messagesContent .mCSB_scrollTools {
+	width: 13px !important
+}
+.mCSB_inside>.mCSB_container {
+	margin-right: 0 !important;
+}
+.messageBox .voice {
+	height: 26px;
+	width: 26px;
+	background: url(sprite.png) 6px -76px;
+	display: inline-block;
+	border-radius: 50%;
+	position: relative;
+	top: -3px;
+	background-color: rgba(255,255,255,0.1);
+	cursor: pointer;
+}
+.messageBox .voice:hover {
+	background-color: rgba(255,255,255,0.3);
+}
+.messageBox .voiceActive, .messageBox .voiceActive:hover {
+	background-color: red;
+}
+.voiceWrap {
+	display: inline-block;
+	width: 26px;
+}
+.voiceWrap .tip {
+	position: absolute;
+	right: 42px;
+	top: -18px;
+	background: rgba(208, 208, 208, 0.74);
+	padding: 2px 5px;
+	font-size: 11px;
+	border-radius: 5px;
+	color: #777;
+	display: none;
+	opacity: 0;
+	-webkit-transition: opacity 250ms ease-out;
+	-moz-transition: opacity 250ms ease-out;
+	-ms-transition: opacity 250ms ease-out;
+	-o-transition: opacity 250ms ease-out;
+	transition: opacity 250ms ease-out;
+}
+.voiceWrap:hover .tip {
+	opacity: 1;
+	display: block;
+}
+.voiceWrap .tip:after {
+	content: '';
+	content: '';
+	position: absolute;
+	left: 48%;
+	top: 100%;
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid #D0D0D0;
+	clear: both;
+}
+.messageMargin {
+	margin: 15px;
+}
+
+
+
+/*============================ new UI from fungton ==========================================*/
+
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+html, body {
+	height: 100%;
+}
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 1.3;
+	overflow: hidden;
+}
+.chatApp {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	width: 680px;
+	height: 80vh;
+	max-height: 500px;
+	z-index: 2;
+	overflow: hidden;
+	box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+	background: rgba(255,255,255,1);
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+	background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+	background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 );
+	border-radius: 10px;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+.chatApp .title {
+	height: 40px;
+	background: #cc0066;
+	width: 100%;
+	padding: 0 10px;
+	line-height: 14px;
+}
+.chatApp .title h1 {
+	font-size: 18px;
+	color: #fff;
+	font-weight: 800;
+	width: 40%;
+	display: inline-block;
+}
+.chatApp .title h1 span {
+	font-weight: 100
+}
+.chatApp .title .controls {
+	float: right;
+	display: inline-block;
+	text-align: right;
+	height: 33px;
+	margin-top: 7px;
+}
+.chatApp .title .controls div, .chatApp .title .controls a {
+	text-decoration: none;
+}
+.chatApp .title .controls .close {
+	height: 24px;
+	width: 24px;
+	background: url("../images/sprite.png") 0 0;
+	display: inline-block;
+	margin-right: 5px;
+	cursor: pointer;
+}
+.chatApp .title .controls .volume {
+	height: 24px;
+	width: 24px;
+	background: url("../images/sprite.png") 0 -25px;
+	display: inline-block;
+	margin-right: 5px;
+	cursor: pointer;
+}
+.chatApp .title .controls .volumeOff {
+	height: 24px;
+	width: 24px;
+	background: url("../images/sprite.png") 0 -49px;
+	display: inline-block;
+	margin-right: 5px;
+	cursor: pointer;
+}
+.chatApp .messages {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1 1 auto;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	color: rgba(0, 0, 0, 0.7);
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	/*height: 350px;*/
+}
+.chatApp .messages .messagesContent {
+	/*height: 101%;*/
+	width: 100%;
+}
+.chatApp .messages .messagesContent .message.new .avatar {
+	height: 34px;
+	width: 34px;
+	background: #fff;
+	border-radius: 50%;
+	margin: 0;
+	float: left;
+	padding-bottom: 0;
+	overflow: hidden;
+}
+.chatApp .messages .messagesContent .message.right .avatar {
+	float: right
+}
+.chatApp .messages .message.new {
+	width: 510px;
+}
+.chatApp .messages .message.right {
+	float: right;
+}
+.chatApp .messages .message.new div {
+	float: left;
+	margin-left: 10px;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 10px;
+	font-size: 12px;
+	line-height: 18px;
+}
+.chatApp .messages .message.new div.replies {
+	background: rgba(16, 210, 68, 0.1);
+	padding: 5px 10px;
+	border-radius: 5px;
+	min-width: 410px;
+	max-width: 465px;
+}
+.chatApp .messages .message.right div.replies {
+	float: right;
+	margin-right: 10px;
+	min-height: 35px;
+	background: rgba(8, 196, 255, 0.08);
+}
+.chatApp .messages .message.right div {
+	text-align: right;
+	margin-right: 10px;
+	margin: 0;
+}
+.chatApp .messages .message {
+	clear: both;
+	float: left;
+	font-size: 11px;
+	line-height: 1.4;
+	position: relative;
+	margin: 10px 0;
+}
+.messageBox {
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 1 40px;
+	-ms-flex: 0 1 40px;
+	flex: 0 1 40px;
+	width: 100%;
+	background: #cc0066;
+	padding: 10px;
+	position: relative;
+}
+.messageBox .messageInput {
+	background: none;
+	border: none;
+	outline: none !important;
+	resize: none;
+	color: rgba(255, 255, 255, 0.9);
+	font-size: 12px;
+	height: 17px;
+	margin: 0;
+	padding-right: 20px;
+	width: 81%;
+	overflow: hidden;
+	vertical-align: top;
+}
+.messageBox textarea:focus:-webkit-placeholder {
+ color: transparent;
+}
+.messageBox .messageSubmit {
+	position: absolute;
+	z-index: 1;
+	top: 9px;
+	right: 10px;
+	color: #fff;
+	border: none;
+	background: #0c96d4;
+	font-size: 12px;
+	line-height: 1;
+	padding: 6px 20px;
+	border-radius: 30px;
+	outline: none !important;
+	-webkit-transition: background .2s ease;
+	transition: background .2s ease;
+	cursor: pointer;
+}
+.messageBox .messageSubmit:hover {
+	background: #087eb3;
+}
+.messagesContent .mCSB_scrollTools {
+	width: 13px !important
+}
+.mCSB_inside>.mCSB_container {
+	margin-right: 0 !important;
+}
+.messageBox .voice {
+	height: 26px;
+	width: 26px;
+	background: url("../images/sprite.png") 6px -76px;
+	display: inline-block;
+	border-radius: 50%;
+	position: relative;
+	top: -3px;
+	background-color: rgba(255,255,255,0.1);
+	cursor: pointer;
+}
+.messageBox .voice:hover {
+	background-color: rgba(255,255,255,0.3);
+}
+.messageBox .voiceActive, .messageBox .voiceActive:hover {
+	background-color: red;
+}
+.voiceWrap {
+	display: inline-block;
+	width: 26px;
+}
+.voiceWrap .tip {
+	position: absolute;
+	right: 42px;
+	top: -18px;
+	background: rgba(208, 208, 208, 0.74);
+	padding: 2px 5px;
+	font-size: 11px;
+	border-radius: 5px;
+	color: #777;
+	display: none;
+	opacity: 0;
+	-webkit-transition: opacity 250ms ease-out;
+	-moz-transition: opacity 250ms ease-out;
+	-ms-transition: opacity 250ms ease-out;
+	-o-transition: opacity 250ms ease-out;
+	transition: opacity 250ms ease-out;
+}
+.voiceWrap:hover .tip {
+	opacity: 1;
+	display: block;
+}
+.voiceWrap .tip:after {
+	content: '';
+	content: '';
+	position: absolute;
+	left: 48%;
+	top: 100%;
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid #D0D0D0;
+	clear: both;
+}
+.messageMargin {
+	margin: 15px;
+}

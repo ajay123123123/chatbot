@@ -78,7 +78,7 @@ public class ConversationHelper {
 		return result;
 	}
 	
-	private static String validatephn(String phn){
+	private static string validatephn(long phn){
 		String result="false";
 		
 			if(validphn.contains(phn)){

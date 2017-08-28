@@ -20,7 +20,7 @@ public class ConversationHelper {
 			{"What is your favorite game?","Cricket"},
 			{"What is your favorite food?","Gulab Jamun"},
 			};
-	static private long validphn = "1231231212,1515151212,1616161212";
+	static private String validPhn = "1234567891,1212121212,1000000000";
 	public static synchronized ConversationService getConvService(){
 		ConversationService service = new ConversationService("2016-07-11");
 		service.setUsernameAndPassword(userId, password);
@@ -78,13 +78,13 @@ public class ConversationHelper {
 		return result;
 	}
 	
-	private static string validatephn(long phn){
-		String result="false";
-		
-			if(validphn.contains(phn)){
-				result="true";
-			}
-		
+	private static boolean validatePhn(String phn) {
+		boolean result = false;
+
+		if (validPhn.contains(phn)) {
+			result = true;
+		}
+
 		return result;
 	}
 	
@@ -117,10 +117,6 @@ public class ConversationHelper {
 			convResp.inputText = validateUID(convResp.getResponse().getContext().get("user_input").toString());
 			convResp = converse(convResp); 
 			
-		}else if(convResp.getResponse().getContext().get("action").equals("validate_phn")){
-			convResp.inputText = validatephn(convResp.getResponse().getContext().get("user_input").toString());
-			convResp = converse(convResp); 
-			
 		}else if(convResp.getResponse().getContext().get("action").equals("provide_verification_question")){
 			@SuppressWarnings("unchecked")
 			ArrayList<String> arrayResp =  (ArrayList<String>) convResp.response.getOutput().get("text");
@@ -131,7 +127,16 @@ public class ConversationHelper {
 		}else if(convResp.getResponse().getContext().get("action").equals("validate_verification_question")){
 			convResp.inputText = validateAnswer(convResp);
 			convResp = converse(convResp);
-		}
+		}else if (convResp.getResponse().getContext().get("action").equals("validate_phn")) {
+			String userInput = convResp.getResponse().getContext().get("user_input").toString();
+			if(validatePhn(userInput)){				
+				convResp.inputText = "true";
+			} else {				
+				convResp.inputText = "false";
+			}
+			convResp.getResponse().getContext().put("action","");
+			convResp = converse(convResp);			
+		} 
 		
 	
 		return convResp;

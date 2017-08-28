@@ -20,6 +20,7 @@ public class ConversationHelper {
 			{"What is your favorite game?","Cricket"},
 			{"What is your favorite food?","Gulab Jamun"},
 			};
+	static private long validphn = "1231231212,1515151212,1616161212";
 	public static synchronized ConversationService getConvService(){
 		ConversationService service = new ConversationService("2016-07-11");
 		service.setUsernameAndPassword(userId, password);
@@ -106,6 +107,10 @@ public class ConversationHelper {
 			convResp.inputText = validateUID(convResp.getResponse().getContext().get("user_input").toString());
 			convResp = converse(convResp); 
 			
+		}else if(convResp.getResponse().getContext().get("action").equals("validate_phn")){
+			convResp.inputText = validphn(convResp.getResponse().getContext().get("user_input").toString());
+			convResp = converse(convResp); 
+			
 		}else if(convResp.getResponse().getContext().get("action").equals("provide_verification_question")){
 			@SuppressWarnings("unchecked")
 			ArrayList<String> arrayResp =  (ArrayList<String>) convResp.response.getOutput().get("text");
@@ -113,7 +118,7 @@ public class ConversationHelper {
 			arrayResp.add(question);
 			convResp.getResponse().getContext().put("verification_question", question);
 			convResp.response.getOutput().put("text", arrayResp);
-		}if(convResp.getResponse().getContext().get("action").equals("validate_verification_question")){
+		}else if(convResp.getResponse().getContext().get("action").equals("validate_verification_question")){
 			convResp.inputText = validateAnswer(convResp);
 			convResp = converse(convResp);
 		}

@@ -78,6 +78,16 @@ public class ConversationHelper {
 		return result;
 	}
 	
+	private static String validatephn(String phn){
+		String result="false";
+		
+			if(validphn.contains(phn)){
+				result="true";
+			}
+		
+		return result;
+	}
+	
 	private static String getQuestion(){
 		Random random = new Random();
 		int i = random.nextInt(4);
@@ -108,7 +118,7 @@ public class ConversationHelper {
 			convResp = converse(convResp); 
 			
 		}else if(convResp.getResponse().getContext().get("action").equals("validate_phn")){
-			convResp.inputText = validphn(convResp.getResponse().getContext().get("user_input").toString());
+			convResp.inputText = validatephn(convResp.getResponse().getContext().get("user_input").toString());
 			convResp = converse(convResp); 
 			
 		}else if(convResp.getResponse().getContext().get("action").equals("provide_verification_question")){

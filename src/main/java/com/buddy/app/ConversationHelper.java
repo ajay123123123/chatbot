@@ -81,7 +81,7 @@ public class ConversationHelper {
 	private static boolean validatePhn(String phn) {
 		boolean result = false;
 
-		if (validPhn.contains(phn)) {
+		if (validPhn.equals(phn)) {
 			result = true;
 		}
 
